@@ -892,13 +892,11 @@ export default {
             response.data.mechanism = response.data.respMechanism[0].mechanism;
             response.data.relevanceType =
               response.data.respMechanism[0].relevanceType;
-            console.log(response.data);
             if (
               response.data.mechanism == 1 &&
               response.data.relevanceType == 1 &&
               response.data.respMechanism.length > 1
             ) {
-              console.log(111);
 
               this.cusType.forEach((item, index) => {
                 item.timeResource =
@@ -951,17 +949,19 @@ export default {
                 let match2 = item.calculateRule.match(regex2) || "";
                 let match3 = item.calculateRule.match(regex3) || "";
                 // 数据响应式更新
-                this.$set(item, "firstY", match[0]);
-                if (match2[1] != undefined) {
+                if(match&&match[0]!= undefined && match2[1] != "" && match2[1] != null){
+                    this.$set(item, "firstY", match[0]);
+                }
+                if (match2[1] != undefined && match2[1] != "" && match2[1] != null) {
                   this.$set(item, "cusmethod", match2[1]);
                 }
-                if (match3[1] != undefined) {
+                if (match3[1] != undefined && match3[1] != "" && match3[1] != null) {
+                    console.log(2)
                   this.$set(item, "secY", "{" + match3[1] + "}");
                   item.secY = "{" + match3[1] + "}";
                 }
               });
               this.formulaList = response.data.warnMethods;
-              console.log(this.formulaList);
             }
             this.form = response.data;
           }
@@ -988,7 +988,6 @@ export default {
             this.$message.error("请选择媒体资源");
             return;
           }
-          //   console.log(this.form.mediaResource);
           // 按客户类型匹配
           if (this.form.mechanism == 1 && this.form.relevanceType == 1) {
             this.form.respMechanism = [];
@@ -1040,7 +1039,6 @@ export default {
                 item.firstY +
                 (item.cusmethod == undefined ? "" : item.cusmethod) +
                 (item.secY == undefined ? "" : item.secY);
-              console.log(item.calculateRule);
               delete item.firstY;
               delete item.cusmethod;
               delete item.secY;
