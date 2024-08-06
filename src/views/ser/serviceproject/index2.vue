@@ -956,7 +956,6 @@ export default {
                   this.$set(item, "cusmethod", match2[1]);
                 }
                 if (match3[1] != undefined && match3[1] != "" && match3[1] != null) {
-                    console.log(2)
                   this.$set(item, "secY", "{" + match3[1] + "}");
                   item.secY = "{" + match3[1] + "}";
                 }
