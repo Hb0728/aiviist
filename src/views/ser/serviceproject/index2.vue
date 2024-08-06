@@ -1103,13 +1103,14 @@ export default {
   margin-left: 145px;
 }
 .menu-name-level-1{
-    color: #e6a23c;
+    // color: #409eff;
+    font-weight: bold;
 }
 .menu-name-level-2{
-    color: #007BFF;
+    // color: #53A8FF;
 }
 .menu-name-level-3{
-    color: #007BFF;
+    color: #409eff;
 }
 </style>
 <style>

@@ -84,11 +84,11 @@
         <span class="labelName">数量</span>
         <el-input
           class="wd150 mr10"
-          type="number"
+          type="text"
           v-model="formData.serviceCount"
           placeholder="请输入关联数量"
         ></el-input>
-        <span>人</span>
+        <span>人<span style="color: #409EFF;">（未设定则匹配符合条件的所有人）</span></span>
       </div>
     </div>
     <div class="drawaFooter mt30">
@@ -114,7 +114,7 @@ export default {
         projectId: undefined,
         dataType: undefined,
         projectTargets: [],
-        serviceCount: undefined,
+        serviceCount: '符合条件的所有人',
       },
       relationList: [
         {
@@ -165,7 +165,12 @@ export default {
       this.isNext = isNext;
       this.cusList = cusList;
       this.formData.dataType = dataType;
-      this.formData.serviceCount = serviceCount;
+      console.log(serviceCount)
+      if(serviceCount==0){
+        this.formData.serviceCount = ''
+      }else{
+        this.formData.serviceCount = serviceCount;
+      }
       this.innerDrawer = true;
     },
     submit() {
